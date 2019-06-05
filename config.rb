@@ -70,9 +70,10 @@ class HtmlFiles < Middleman::Extension
   def initialize(app, options_hash={}, &block)
     super
     app.after_build do |builder|
-      puts "Oude blog in orde zetten"
-      system "rm -R tmp/blog"
-      puts (system "cp -R source/blog tmp/blog")
+      puts "oude blog wordt niet meer in orde gezet"
+      # puts "Oude blog in orde zetten"
+      # system "rm -R tmp/blog"
+      # puts (system "cp -R source/blog tmp/blog")
     end
   end
 end
