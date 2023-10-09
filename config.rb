@@ -36,7 +36,7 @@
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-activate :livereload
+# activate :livereload
 
 # Methods defined in the helpers block are available in templates
 # helpers do
@@ -45,64 +45,67 @@ activate :livereload
 #   end
 # end
 
-ready do
-  portfolio_items = sitemap.where(:tag.include => "portfolio").all
+# ready do
+#   # portfolio_items = sitemap.resources
+#   #   .filter { |p| p.data["tag"] == "portfolio" }
+#
+#   # page "portfolio/index.html", :proxy => "/portfolio_template.html", :ignore => true do
+#   #   @portfolio_items = portfolio_items
+#   #   content_for(:title, "Wat we doen, portfolio")
+#   #   content_for(:subtitle, "Passioneel werken we webapplicaties uit met sterke focus op het <strong>proces</strong>, <strong>eenvoud</strong> en <strong>effectiviteit</strong>.")
+#   # end
+#   #
+#   # portfolio_items.each do |portfolio_item|
+#   #   page "#{portfolio_item.url}index.html", :proxy => "/portfolio_item_template.html", :ignore => true do
+#   #     @portfolio_item = portfolio_item
+#   #     content_for(:title, @portfolio_item.data[:title])
+#   #     content_for(:subtitle, @portfolio_item.data[:subtitle])
+#   #     # portfolio_items.delete(portfolio_item)
+#   #     @other_projects = portfolio_items.sample(3)
+#   #   end
+#   # end
+# end
 
-  page "portfolio/index.html", :proxy => "/portfolio_template.html", :ignore => true do 
-    @portfolio_items = portfolio_items
-      content_for(:title, "Wat we doen, portfolio")
-      content_for(:subtitle, "Passioneel werken we webapplicaties uit met sterke focus op het <strong>proces</strong>, <strong>eenvoud</strong> en <strong>effectiviteit</strong>.")
-  end
+# class HtmlFiles < Middleman::Extension
+#   def initialize(app, options_hash = {}, &block)
+#     super
+#     app.after_build do |builder|
+#       puts "oude blog wordt niet meer in orde gezet"
+#       # puts "Oude blog in orde zetten"
+#       # system "rm -R tmp/blog"
+#       # puts (system "cp -R source/blog tmp/blog")
+#     end
+#   end
+# end
 
-  portfolio_items.each do |portfolio_item|
-    page "#{portfolio_item.url}index.html", :proxy => "/portfolio_item_template.html", :ignore => true do
-      @portfolio_item = portfolio_item
-      content_for(:title, @portfolio_item.data[:title])
-      content_for(:subtitle, @portfolio_item.data[:subtitle])
-      # portfolio_items.delete(portfolio_item)
-      @other_projects = portfolio_items.sample(3)
-    end
-  end
-end
+# ::Middleman::Extensions.register(:html_files, HtmlFiles)
 
-
-class HtmlFiles < Middleman::Extension
-  def initialize(app, options_hash={}, &block)
-    super
-    app.after_build do |builder|
-      puts "oude blog wordt niet meer in orde gezet"
-      # puts "Oude blog in orde zetten"
-      # system "rm -R tmp/blog"
-      # puts (system "cp -R source/blog tmp/blog")
-    end
-  end
-end
-::Middleman::Extensions.register(:html_files, HtmlFiles)
-
-set :css_dir, 'stylesheets'
-
-set :js_dir, 'javascripts'
-
-set :images_dir, 'images'
-activate :directory_indexes
-set :build_dir, "tmp"
-
-activate :html_files
-
-# Build-specific configuration
-configure :build do
-  # For example, change the Compass output style for deployment
-  # activate :minify_css
-
-  # Minify Javascript on build
-  # activate :minify_javascript
-
-  # Enable cache buster
-  # activate :asset_hash
-
-  # Use relative URLs
-  # activate :relative_assets
-
-  # Or use a different image path
-  # set :http_prefix, "/Content/images/"
-end
+# set :css_dir, "stylesheets"
+#
+# set :js_dir, "javascripts"
+#
+# set :images_dir, "images"
+#
+# set :build_dir, "tmp"
+#
+# activate :directory_indexes
+#
+# activate :html_files
+#
+# # Build-specific configuration
+# configure :build do
+#   # For example, change the Compass output style for deployment
+#   # activate :minify_css
+#
+#   # Minify Javascript on build
+#   # activate :minify_javascript
+#
+#   # Enable cache buster
+#   # activate :asset_hash
+#
+#   # Use relative URLs
+#   # activate :relative_assets
+#
+#   # Or use a different image path
+#   # set :http_prefix, "/Content/images/"
+# end
